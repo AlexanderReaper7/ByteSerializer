@@ -13,13 +13,13 @@ namespace ByteSerializerTest
         static void Main(string[] args)
         {
             // Create object
-            TestPlayer tp = new TestPlayer(1,2, new List<string>{"TEST","NOTnil"});
+            TestPlayer tp = new TestPlayer(1,2,3, new List<string>{"TEST","NOTnil"});
             // Read object 
             byte[] arr = ByteSerializer.ObjectToByteArray(tp);
             // Write object
             TestPlayer ntp = (TestPlayer) ByteSerializer.ByteArrayToObject(arr);
             // Stop
-            Console.ReadKey(); // PLACE BREAKPOINT HERE!
+            Console.ReadKey(); // PLACE BREAKPOINT HERE! then read ntp
         }
     }
 
@@ -29,11 +29,14 @@ namespace ByteSerializerTest
         public int X;
         public int Y;
         public List<string> NameList;
+        [NonSerialized]
+        private int Z;
 
-        public TestPlayer(int x, int y, List<string> nameList)
+        public TestPlayer(int x, int y, int z, List<string> nameList)
         {
             X = x;
             Y = y;
+            Z = z;
             NameList = nameList;
         }
     }
